@@ -14,22 +14,34 @@ function showProduct(product) {
   //lav en kopi
   const copy = template.cloneNode(true);
   //ændre indhold
+
+  let fullPrice = product.price;
+  let discountPercentage = product.discount;
+
+  // Calculate the discounted price
+  let discountedPrice = fullPrice - fullPrice * (discountPercentage / 100);
+
   copy.querySelector("h3").textContent = product.productdisplayname;
+  copy.querySelector(".price").textContent = product.price;
+  copy.querySelector(".discounted p:last-child").textContent =
+    product.discount + "%";
+  copy.querySelector(".discounted p:first-child").textContent =
+    discountedPrice.toFixed();
 
-  copy.querySelector("img").src = `https://kea-alt-del.dk/t7/images/webp/640/${product.id}.webp`
+  copy.querySelector(
+    "img"
+  ).src = `https://kea-alt-del.dk/t7/images/webp/640/${product.id}.webp`;
 
-
-  if(product.soldout){
+  if (product.soldout) {
     //produktet er udsolgt
-    copy.querySelector("article").classList.add("sold-out")
+    copy.querySelector("article").classList.add("sold-out");
   }
 
-  if(product.soldout){
+  if (product.discount) {
     //produktet er udsolgt
-    copy.querySelector("article").classList.add("sold-out")
+    copy.querySelector("article").classList.add("on-sale");
   }
 
-  
   //appende
   document.querySelector("main").appendChild(copy);
 }
