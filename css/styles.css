@@ -12,6 +12,7 @@ body {
 
 a {
   text-decoration: none;
+  color: black;
 }
 
 a:visited {
@@ -121,10 +122,9 @@ article.sold-out::before {
   display: none;
 }
 
-.product-list article.on-sale .discounted{
- display: flex;
- justify-content: space-between;
-
+.product-list article.on-sale .discounted {
+  display: flex;
+  justify-content: space-between;
 }
 .product-list article.on-sale .price span {
   display: initial;
@@ -137,17 +137,22 @@ article.sold-out::before {
 .discounted p:last-child {
   background-color: red;
   color: white;
- padding: 2px 3px;
+  padding: 2px 3px;
   grid-column: 2/-1;
   grid-row: 1;
 }
 
 /* products.html */
 
-@media only screen and (min-width: 500px) {
+.discounted-price {
+  display: grid;
+}
+
+@media only screen and (min-width: 600px) {
   .product main {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    gap: 2em;
   }
 
   .product h2 {
@@ -175,39 +180,39 @@ article.sold-out::before {
   }
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 600px) {
   .product main {
     display: grid;
     grid-template-columns: 1fr;
+    padding: 2em 0;
   }
 
   .purchase-box {
     grid-row: 3;
 
     text-align: center;
-    background-color: rgb(254, 248, 245);
     border-radius: 10px;
-    margin: 20% 8%;
-
-    display: grid;
-    gap: 2em;
-    padding: 2em;
   }
+}
+
+.product main img {
+  min-width: 250px;
 }
 
 .purchase-box {
   text-align: center;
-border: solid 1px black;
+  border: solid 1px black;
   border-radius: 5px;
-  margin: 20% 8%;
-
+  margin: 2em auto;
+  padding: 2em;
+  max-width: 500px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
 }
 
 button {
-  margin: 0 auto;
+  margin: 2em auto;
   background-color: black;
   color: white;
   padding: 15px 32px;

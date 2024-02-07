@@ -1,16 +1,53 @@
 // https://kea-alt-del.dk/t7/api/products/1525
 
-fetch("https://kea-alt-del.dk/t7/api/products/1525")
+const urlParams = new URLSearchParams(window.location.search);
+const id = urlParams.get("id");
+
+fetch("https://kea-alt-del.dk/t7/api/products/" + id)
   .then((response) => response.json())
   .then((data) => showProduct(data));
 
-let fullPrice = product.price;
-let discountPercentage = product.discount;
-// Calculate the discounted price
-let discountedPrice = fullPrice - fullPrice * (discountPercentage / 100);
-
 function showProduct(product) {
   console.log(product);
+
+  //fang template
+  const template = document.querySelector(".product-template");
+  const templateContent = template.content;
+  
+  const copy = templateContent.cloneNode(true);
+
+ 
+  //ændre indhold
+
+  // shows price
+  let fullPrice = product.price;
+  let discountPercentage = product.discount;
+  // calculate the discounted price
+  let discountedPrice = fullPrice - fullPrice * (discountPercentage / 100);
+
+  // document.querySelectorAll("main .product-title").forEach(function (element) {
+  //   element.textContent = product.productdisplayname;
+  // });
+  copy.querySelector("img").src = `https://kea-alt-del.dk/t7/images/webp/640/${product.id}.webp`;
+
+  // copy.querySelector(".basecolour").textContent = product.basecolour;
+
+  // copy.querySelectorAll(".brand-name").textContent = product.brandname;
+
+  // copy.querySelector(".brandbio").textContent = product.brandbio;
+
+  // // Update element with class "item-description"
+  copy.querySelector(".item-description").innerHTML = product.description;
+
+  copy.querySelector(".price").textContent = product.price;
+
+  copy.querySelector(".discounted-price p:last-child").textContent = product.discount + "%";
+
+  copy.querySelector(".discounted-price p:first-child").textContent = discountedPrice.toFixed();
+
+  // //appende
+   document.querySelector("main").appendChild(copy);
+
   document.querySelectorAll("main .product-title").forEach(function (element) {
     element.textContent = product.productdisplayname;
   });
@@ -19,11 +56,11 @@ function showProduct(product) {
     element.textContent = product.brandname;
   });
 
-  document.querySelector(".price").textContent = product.price;
+  // document.querySelector(".price").textContent = product.price;
 
-  document.querySelector(
-    "img"
-  ).src = `https://kea-alt-del.dk/t7/images/webp/640/${product.id}.webp`;
+  // document.querySelector(
+  //   "img"
+  // ).src = `https://kea-alt-del.dk/t7/images/webp/640/${product.id}.webp`;
 
   document.querySelectorAll(".basecolour").forEach(function (element) {
     element.textContent = product.basecolour;
@@ -34,14 +71,17 @@ function showProduct(product) {
   });
 
   // Update element with class "item-description"
-  document.querySelector(".item-description").textContent = product.description;
-}
+  // document.querySelector(".item-description").textContent = product.description;
 
-copy.querySelector(".discounted-product p:last-child").textContent =
-  product.discount + "%";
-  
-copy.querySelector(".discounted-product p:first-child").textContent =
-  discountedPrice.toFixed();
+  // copy.querySelector(".discounted-product p:last-child").textContent =
+  //   product.discount + "%";
+
+  // copy.querySelector(".discounted-product p:first-child").textContent =
+  //   discountedPrice.toFixed();
+
+  //appende
+  document.querySelector(".product-template").appendChild(copy);
+}
 
 //  id: 1525,
 //  gender: "Unisex",
