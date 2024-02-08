@@ -10,25 +10,57 @@ function showCategories(categories) {
 }
 
 function showCategory(category) {
-    console.log(category);
+  console.log(category);
 
-    // // catch the template
-    // const template = document.querySelector("#category-template").content;
+  // Catch that template
 
-    // // making a copy
-    // const copy = template.cloneNode(true);
+  const template = document.querySelector("template").content;
 
-    // // change the content
-    // // copy.querySelector("li a").setAttribute("href", `categories.html?`)
-    
-    // copy.querySelector(".brand-list ol li a").textContent = category.category
+  //viktigt att skriva const clone innan cloneNode!
+  const clone = template.cloneNode(true);
 
-    // document.querySelector("main").appendChild(copy);
+  // få fatt och skifta innehåll
 
-    const template = document.querySelector("#category-template").content.cloneNode(true);
-    const categoryLink = template.querySelector(".brand-list ol li a");
-    categoryLink.textContent = category.category;
-    categoryLink.href = `productlist.html?category=${encodeURIComponent(category.category)}`; // Pass category name as query parameter
-    document.querySelector("main").appendChild(template);
+clone.querySelector("a").textContent = category.category
+clone.querySelector("a").href=`productlist.html?category=${category.category}`;
+
+document.querySelector("main").appendChild(clone);
+
 
 }
+
+{
+  /* <main>
+      <template id="category-template">
+      <div class="brand-list">
+        <ol>
+          <li id="category-id"><a href="productlist.html">Accessories</a></li>
+        </ol>
+      </div>
+    </template>
+    </main> */
+}
+
+// function showCategory(category) {
+//     console.log(category);
+
+//     // // catch the template
+//     // const template = document.querySelector("#category-template").content;
+
+//     // // making a copy
+//     // const copy = template.cloneNode(true);
+
+//     // // change the content
+//     // // copy.querySelector("li a").setAttribute("href", `categories.html?`)
+
+//     // copy.querySelector(".brand-list ol li a").textContent = category.category
+
+//     // document.querySelector("main").appendChild(copy);
+
+//     const template = document.querySelector("#category-template").content.cloneNode(true);
+//     const categoryLink = template.querySelector(".brand-list ol li a");
+//     categoryLink.textContent = category.category;
+//     categoryLink.href = `productlist.html?category=${encodeURIComponent(category.category)}`; // Pass category name as query parameter
+//     document.querySelector("main").appendChild(template);
+
+// }
