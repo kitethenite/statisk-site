@@ -39,10 +39,50 @@ h3 {
   font-size: 22px;
   margin: 0 0 1em;
 }
+/** index.html **/
+
+.index-main {
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: minmax( auto);
+  font-size: calc(70px + 0.390625vw);
+}
+
+.index-main div:nth-child(1) {
+  text-align: center;
+  grid-column: 1 / span 2;
+  grid-row: 1 / span 2;
+}
+
+.index-main div:nth-child(2) {
+  text-align: center;
+  grid-column: 1 / span 2;
+  grid-row: 2 / span 2;
+  z-index: 1;
+  padding-left: 30%;
+}
+
+.index-main div:nth-child(3) {
+  color: rgb(208, 208, 208);
+  text-align: center;
+  grid-column: 1 / span 2;
+  grid-row: 2 / span 2;
+  padding: 10px 0 0 31%;
+}
 
 /** categories.html **/
 
-.brand-list ol {
+/* .brand-list ol {
+  list-style: none;
+  column-count: 2;
+}
+
+.brand-list li {
+  padding: 2em 0;
+} */
+
+.category-page ol{
   list-style: none;
   column-count: 2;
 }
@@ -59,7 +99,7 @@ h3 {
   gap: 2em;
 }
 
-@media only screen and (min-width: 450px) {
+@media only screen and (min-width: 480px) {
   .product-list main {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -148,7 +188,15 @@ article.sold-out::before {
   display: grid;
 }
 
-@media only screen and (min-width: 600px) {
+.hide {
+  display: none;
+}
+
+.discounted-price .hide {
+  display: initial;
+}
+
+@media only screen and (min-width: 720px) {
   .product main {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -180,7 +228,7 @@ article.sold-out::before {
   }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 720px) {
   .product main {
     display: grid;
     grid-template-columns: 1fr;
@@ -230,4 +278,49 @@ dl {
 
 dt {
   font-weight: bold;
+}
+
+.price-area {
+  margin: 2em 0 0;
+  text-align: left;
+  padding: 0 0 0 40%;
+}
+
+.line-through {
+  text-decoration-line: line-through;
+  color: grey;
+  font-weight: 100;
+}
+
+.product-discounted {
+  display: flex;
+  justify-content: space-between;
+  max-width: 10em;
+  vertical-align: baseline;
+}
+
+.product-discounted p:nth-child(1) {
+padding: 0.2em 0 0;
+}
+
+.product-discounted p:nth-child(2) {
+  background-color: red;
+  color: white;
+  font-size: 18px;
+  font-weight: 200;
+  padding: 3px 2px;
+}
+
+
+
+/* <div class="price-area"> 
+<p class="product-price"></p>
+<div class="product-discounted">
+  <p></p>
+  <p></p>
+</div>
+</div> */
+
+section.product-info h3 {
+margin: 2em 0 0;
 }

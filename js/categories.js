@@ -1,4 +1,9 @@
 // https://kea-alt-del.dk/t7/api/categories
+const urlParams = new URLSearchParams(window.location.search);
+const index = urlParams.get("index");
+
+document.querySelector(".index").textContent = "Home";
+
 
 fetch("https://kea-alt-del.dk/t7/api/categories")
   .then((res) => res.json())

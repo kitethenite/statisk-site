@@ -3,6 +3,15 @@
 const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get("id");
 
+// Nedanstående så prövar jag bara att ändra category till dess valda namn, men det gick inte riktigt som planerat. Ska försöka knäcka denna nöten en annan gång!
+
+// const productURL = urlParams.get("product");
+// const idURL = urlParams.get("id")
+
+// document.querySelector(".nav-categories").textContent = productURL + idURL 
+
+// ?category=Accessories
+
 fetch("https://kea-alt-del.dk/t7/api/products/" + id)
   .then((response) => response.json())
   .then((data) => showProduct(data));
@@ -20,13 +29,51 @@ function showProduct(product) {
 
   document.querySelector(".item-description").innerHTML = product.description;
 
-  document.querySelector(".basecolour").textContent = product.basecolour
+  document.querySelector(".basecolour").textContent = product.basecolour;
 
   document.querySelectorAll(".brand-name").forEach(function (element) {
-    element.textContent = product.brandname});
+    element.textContent = product.brandname;
+  });
 
-document.querySelector(".brandbio").textContent = product.brandbio;
+  document.querySelector(".brandbio").textContent = product.brandbio;
 
+  //Pris!!
+
+  // shows price
+  let fullPrice = product.price;
+  let discountPercentage = product.discount;
+  // calculate the discounted price
+  let discountedPrice = fullPrice - fullPrice * (discountPercentage / 100);
+
+  document.querySelector(".product-price").textContent = product.price + " DKK";
+  document.querySelector(".product").classList.remove("line-through");
+
+  // document.querySelector(".product-discounted p:first-child").textContent =
+  //   discountedPrice.toFixed();
+
+  // document.querySelector(".product-discounted p:last-child").textContent =
+  //   product.discount + "%";
+
+  if (product.discount) {
+    console.log("discount area");
+    //kan kun kopier klasse hvis den ikke er 0/null
+    //produktet er på sale
+    let fullPrice = product.price;
+    let discountPercentage = product.discount;
+    let discountedPrice = fullPrice - fullPrice * (discountPercentage / 100);
+
+    document
+      .querySelector(".price-area div")
+      .classList.add("product-discounted");
+
+    document.querySelector(".product-price").classList.add("line-through");
+
+    document.querySelector(".product-discounted p:first-child").textContent =
+      discountedPrice.toFixed() + " DKK";
+
+    document.querySelector(".product-discounted p:last-child").textContent =
+      product.discount + "%";
+  }
 }
 
 // const urlParams = new URLSearchParams(window.location.search);

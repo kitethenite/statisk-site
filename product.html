@@ -7,15 +7,18 @@
     <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body class="product">
+  </head>
+  <body class="product-list">
     <header>
       <h1><a href="index.html">FashionStore</a></h1>
-      <nav>
-        <ol>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="categories.html">Categories</a></li>
-          <li><a href="productlist.html">Products</a></li>
-        </ol>
-      </nav>
+      <nav><ol>
+        <li><a href="index.html" class="nav-home">Home</a></li>
+        <li>&gt;</li>
+        <li><a href="categories.html" class="nav-categories">Categories</a></li>
+        <li>&gt;</li>
+        <li><a href="#" class="nav-product">Products</a></li>
+      </ol>
+    </nav>
     </header>
     <main>
       <h2 class="product-title">product title</h2>
@@ -45,11 +48,14 @@
         <h3 class="product-title">Product title</h3>
         <p class="brand-name">Brand name</p>
         <p class="item-description">Type of item</p>
-        <p class="price"></p>
-        <div class="discounted-price">
+        <div class="price-area"> 
+        <p class="product-price line-through"></p>
+        <div >
           <p></p>
           <p></p>
         </div>
+      </div>
+      
 
         <a href="#"><button>Add to basket</button></a>
       </section>

@@ -1,6 +1,7 @@
 const urlParams = new URLSearchParams(window.location.search);
 const category = urlParams.get("category");
-const categoryTitle = urlParams.get("productlist")
+
+document.querySelector(".nav-categories").textContent = category
 
 document.querySelector("h2").textContent = category;
 
